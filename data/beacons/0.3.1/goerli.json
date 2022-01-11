@@ -1,0 +1,18 @@
+{
+  "contracts": {
+    "@api3/airnode-protocol/contracts/rrp/requesters/RrpBeaconServer": "0x06DC65d26ecD289058014b7A23c94182ab198020"
+  },
+  "beacons": [
+    {
+      "beaconId": "0x6f71ad6bd1ce170abd6a64aad72131587d28696e90459e1d5d6ac8a2e889c507",
+      "templateId": "0x50c604914d8ed35473149457a1a0912b785813b4e2e51bd2b75409ca25c50e1d",
+      "parameters": [
+        {
+          "type": "bytes32",
+          "name": "from",
+          "value": "API3"
+        }
+      ]
+    }
+  ]
+}
