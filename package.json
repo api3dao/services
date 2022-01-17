@@ -1,13 +1,18 @@
 {
   "name": "@api3/services",
   "license": "MIT",
-  "private": true,
   "version": "1.0.0",
   "homepage": "https://github.com/api3dao/services#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/api3dao/services.git"
   },
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "yarn run prettier:check && yarn run lint:eslint",
     "lint:eslint": "eslint . --ext .js,.ts",
