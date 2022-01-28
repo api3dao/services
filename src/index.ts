@@ -12,7 +12,18 @@ interface ChainInfo {
 // Typing this more loosly to avoid TS errors
 const chainsDeploymentInfo: { [chainName: string]: ChainInfo } = _chainsDeploymentInfo;
 
-function getServiceData(apiName: string, beaconName: string, chain: string) {
+interface ServiceData {
+  contracts: {
+    RrpBeaconServer: string;
+  };
+  beacon: {
+    beaconId: string;
+    templateId: string;
+    parameters: string;
+  };
+}
+
+function getServiceData(apiName: string, beaconName: string, chain: string): ServiceData {
   const chainInfo = chainsDeploymentInfo[chain];
   if (!chainInfo) {
     throw new Error(`Deployment file for ${chain} not found`);
@@ -24,18 +35,13 @@ function getServiceData(apiName: string, beaconName: string, chain: string) {
 
   return {
     contracts: {
-      AirnodeRrp: chainInfo.AirnodeRrp,
       RrpBeaconServer: chainInfo.RrpBeaconServer,
     },
-    airnodes: [],
-    beacons: [
-      {
-        beaconId: beaconData['beaconId'],
-        templateId: beaconData['templateId'],
-        parameters: beaconData['decodedParameters'],
-      },
-    ],
-    templates: [],
+    beacon: {
+      beaconId: beaconData['beaconId'],
+      templateId: beaconData['templateId'],
+      parameters: beaconData['decodedParameters'],
+    },
   };
 }
 
