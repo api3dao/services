@@ -1,12 +1,22 @@
 // TODO: Finalize and publish this package on npm and import it here
-export type GoResultSuccess<T> = [null, T];
-export type GoResultError<E = Error> = [E, null];
+export type GoResultSuccess<T> = [null, T] & { data: T };
+export type GoResultError<E = Error> = [E, null] & { error: E };
 export type GoResult<T, E = Error> = GoResultSuccess<T> | GoResultError<E>;
 export const GO_ERROR_INDEX = 0;
 export const GO_RESULT_INDEX = 1;
 
-export const successFn = <T>(value: T): [null, T] => [null, value];
-export const errorFn = <E = Error>(err: E): [E, null] => [err, null];
+export const successFn = <T>(value: T): GoResultSuccess<T> => {
+  const result: any = [null, value];
+  // eslint-disable-next-line functional/immutable-data
+  result.data = value;
+  return result;
+};
+export const errorFn = <E = Error>(err: E): GoResultError<E> => {
+  const result: any = [err, null];
+  // eslint-disable-next-line functional/immutable-data
+  result.error = err;
+  return result;
+};
 
 export const goSync = <T>(fn: () => T): GoResult<T> => {
   try {
