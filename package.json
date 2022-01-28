@@ -14,11 +14,12 @@
     "dist"
   ],
   "scripts": {
-    "lint": "yarn run prettier:check && yarn run lint:eslint",
     "lint:eslint": "eslint . --ext .js,.ts",
+    "lint": "yarn run prettier:check && yarn run lint:eslint",
     "prettier:check": "prettier --check \"./**/*.{js,ts,md,json}\" --loglevel silent",
     "prettier:write": "prettier --write \"./**/*.{js,ts,md,json}\"",
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc --project tsconfig.json"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
