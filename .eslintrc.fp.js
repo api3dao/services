@@ -14,11 +14,8 @@ module.exports = {
         '**/*.feature.ts',
         '**/test/**',
         // Config files
-        'jest.config.base.js',
         '.eslintrc.js',
         '.eslintrc.fp.js',
-        '**/*.config.js',
-        '**/*.config.ts',
       ],
       rules: {
         'functional/immutable-data': 'off',
