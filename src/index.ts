@@ -1,28 +1,47 @@
-import { readFileSync } from 'fs';
+import _chainsDeploymentInfo from '@api3dao/operations/data/chains.json';
+import { goSync, isGoSuccess } from './utils';
 
-function getServiceData(serviceName: string, chain: string) {
-  const deploymentJson = JSON.parse(readFileSync(`./deployments/${chain}.json`).toString());
-  if (!deploymentJson) {
+interface ChainInfo {
+  AirnodeRrp: string;
+  AccessControlRegistry: string;
+  OwnableCallForwarder: string;
+  RequesterAuthorizerWithManager: string;
+  RrpBeaconServer: string;
+}
+
+// Typing this more loosly to avoid TS errors
+const chainsDeploymentInfo: { [chainName: string]: ChainInfo } = _chainsDeploymentInfo;
+
+interface ServiceData {
+  contracts: {
+    RrpBeaconServer: string;
+  };
+  beacon: {
+    beaconId: string;
+    templateId: string;
+    parameters: string;
+  };
+}
+
+function getServiceData(apiName: string, beaconName: string, chain: string): ServiceData {
+  const chainInfo = chainsDeploymentInfo[chain];
+  if (!chainInfo) {
     throw new Error(`Deployment file for ${chain} not found`);
   }
 
-  // TODO: import from @operations and filter by serviceName param
-  const ethToUsdJson = JSON.parse(readFileSync('../opeartions/data/apis/Amberdata/beacons/ethToUsd.json').toString());
+  const goBeaconData = goSync(() => require(`@api3dao/operations/data/apis/${apiName}/beacons/${beaconName}`));
+  if (!isGoSuccess(goBeaconData)) throw new Error(`Service data does not exist.`);
+  const beaconData = JSON.parse(goBeaconData.data).toString();
 
   return {
     contracts: {
-      AirnodeRrp: '',
-      RrpBeaconServer: deploymentJson['@api3/airnode-protocol/contracts/rrp/requesters/RrpBeaconServer'],
+      RrpBeaconServer: chainInfo.RrpBeaconServer,
     },
-    airnodes: [],
-    beacons: [
-      {
-        beaconId: ethToUsdJson['beaconId'],
-        templateId: ethToUsdJson['templateId'],
-        parameters: ethToUsdJson['decodedParameters'],
-      },
-    ],
-    templates: [],
+    beacon: {
+      beaconId: beaconData['beaconId'],
+      templateId: beaconData['templateId'],
+      parameters: beaconData['decodedParameters'],
+    },
   };
 }
 
