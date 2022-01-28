@@ -1,0 +1,13 @@
+# package directories
+node_modules
+/dist
+
+# ENV variables and secrets
+*.env
+
+# IDE specific files
+.vscode
+
+# Log files
+*.log
+*.receipt.json
