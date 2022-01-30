@@ -23,7 +23,7 @@ interface ServiceData {
   };
 }
 
-function getServiceData(apiName: string, beaconName: string, chain: string): ServiceData {
+export function getServiceData(apiName: string, beaconName: string, chain: string): ServiceData {
   const chainInfo = chainsDeploymentInfo[chain];
   if (!chainInfo) {
     throw new Error(`Deployment file for ${chain} not found`);
@@ -44,6 +44,3 @@ function getServiceData(apiName: string, beaconName: string, chain: string): Ser
     },
   };
 }
-
-// TODO: Rethink how the functions are exported
-export default { getServiceData };

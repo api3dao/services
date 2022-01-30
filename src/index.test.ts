@@ -1,9 +1,9 @@
-import services from '.';
+import { getServiceData } from '.';
 
 describe('getServiceData', () => {
   it('returns Amberdata service data', () => {
     expect(
-      services.getServiceData(
+      getServiceData(
         'Amberdata',
         '0x13a49162b764b0035587d5aa260156533975905bc1b89df9d2b43bd185186306-get _market_spot_vwap_pairs_{pair}_latest',
         'ropsten'
