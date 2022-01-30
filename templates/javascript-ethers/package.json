@@ -1,0 +1,27 @@
+{
+  "name": "beacon-reader-example",
+  "version": "1.0.0",
+  "description": "A starter project for reading beacon values from a smart contract",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/api3dao/beacon-reader-example.git"
+  },
+  "homepage": "https://github.com/api3dao/beacon-reader-example#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.3",
+    "hardhat": "^2.8.2"
+  },
+  "dependencies": {
+    "@api3/airnode-abi": "^0.3.1",
+    "@api3/airnode-protocol": "^0.3.1",
+    "dotenv": "^11.0.0"
+  }
+}
