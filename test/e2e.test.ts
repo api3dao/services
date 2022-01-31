@@ -1,5 +1,6 @@
 import { ChildProcessWithoutNullStreams, execSync, spawn } from 'child_process';
-import { chmodSync } from 'fs';
+import { chmodSync, readFileSync, writeFileSync } from 'fs';
+import { join, relative } from 'path';
 import chalk from 'chalk';
 import { createTmpDir } from './utils';
 import { getAvailableTemplates } from '../src/cli/cli';
@@ -69,6 +70,9 @@ describe('Beacon reader CLI', () => {
       childProcess.stdin.write(tmpDir + '\n');
       await waitOnOutput(childProcess);
 
+      // Wait a few milliseconds so that the prompt asks for template
+      await new Promise((res) => setTimeout(res, 500));
+
       // Choose the template to create (accept the default one)
       childProcess.stdin.write('\n');
       // Wait a few seconds until the script initializes the project
@@ -100,27 +104,35 @@ describe('Beacon reader CLI', () => {
         // 1. Create a repository based on the current template name
         execCommand('', ['--path', tmpDir], ['--template', templateName]);
 
-        // 2. Install the dependencies for the created project
+        // 2. Change the current working directory to the newly created project folder
         process.chdir(tmpDir);
-        // TODO: Is it OK to be opinionated about yarn or shall we also have npm templates?
+
+        // 3. Use "file:" dependency option for the services
+        const packageJsonPath = join(tmpDir, 'package.json');
+        const packageJson = readFileSync(packageJsonPath).toString();
+        writeFileSync(
+          packageJsonPath,
+          packageJson.replace('api3dao/services#4cb79ffc406c4451c84accf42f99e6a1251a5799', join(__dirname, '../'))
+        );
+
+        // 4. Install the dependencies for the created project
         // Redirect the stderr of yarn install to /dev/null to avoid the output appearing in jest output
         const installOutput = execSync(`FORCE_COLOR=0 yarn install 2>/dev/null`).toString();
         expect(installOutput).toContain('success Saved lockfile.');
 
-        // 3. Run the sample beacon reader tests
-        // TODO: This should be a nicer script inside the package.json of the template
-        const testOutput = execSync(`FORCE_COLOR=0 npx hardhat test test/BeaconReaderExample.test.js`).toString();
+        // 5. Run the sample beacon reader tests
+        const testOutput = execSync(`FORCE_COLOR=0 yarn test`).toString();
         expect(testOutput).toContain('1 passing');
 
-        // 4. Deploy the beacon reader (and mocked beacon server) and read a value from it
-        // TODO: This should be a nicer script inside the package.json of the template
-        const scriptOutput = execSync(
-          `FORCE_COLOR=0 npx hardhat run scripts/deploy.js && npx hardhat run scripts/read-beacon.js`
-        ).toString();
-        expect(scriptOutput).toContain('BeaconReaderExample deployed to:');
-        expect(scriptOutput).toContain('Beacon value:');
+        // 6. Deploy the beacon reader (and mocked beacon server)
+        const deployOutput = execSync(`FORCE_COLOR=0 yarn deploy`).toString();
+        expect(deployOutput).toContain('BeaconReaderExample deployed to:');
 
-        // 5. TODO: Read a value from a beacon that is already deployed. (use services repo for this)
+        // 7. Read a value from the mocked beacon server
+        const readBeaconOutput = execSync(`yarn read-beacon`).toString();
+        expect(readBeaconOutput).toContain('Beacon value:');
+
+        // 8. TODO: Read a value from a beacon that is already deployed. (use services repo for this)
       });
     });
   });

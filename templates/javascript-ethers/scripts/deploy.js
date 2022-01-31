@@ -6,6 +6,7 @@
 const fs = require("fs");
 const path = require("path");
 const hre = require("hardhat");
+const { getServiceData } = require("@api3/services");
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -32,12 +33,12 @@ async function main() {
     await rrpBeaconServerMock.deployed();
     rrpBeaconServerAddress = rrpBeaconServerMock.address;
   } else {
-    // TODO: replace with path to services repo
-    const deployments = require(`../services/data/beacons/0.3.1/${network}.json`);
-    rrpBeaconServerAddress =
-      deployments.contracts[
-        "@api3/airnode-protocol/contracts/rrp/requesters/RrpBeaconServer"
-      ];
+    const deployments = getServiceData(
+      "Amberdata",
+      "0x13a49162b764b0035587d5aa260156533975905bc1b89df9d2b43bd185186306-get _market_spot_vwap_pairs_{pair}_latest",
+      network
+    );
+    rrpBeaconServerAddress = deployments.contracts.RrpBeaconServer;
   }
 
   // Deploy BeaconReaderExample contract

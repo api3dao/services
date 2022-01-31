@@ -1,5 +1,6 @@
 const fs = require("fs");
 const hre = require("hardhat");
+const { getServiceData } = require("@api3/services");
 
 async function main() {
   const network = hre.network.name;
@@ -45,10 +46,12 @@ async function main() {
     // Uses RrpBeaconServerMock contract so any value would work
     beaconId = ethers.utils.hexlify(ethers.utils.randomBytes(32));
   } else {
-    // TODO: replace with path to services repo
-    // Make sure to first whitelist BeaconReaderExample contract in RrpBeaconServer
-    const deployments = require(`../services/data/beacons/0.3.1/${network}.json`);
-    beaconId = deployments.beacons[0].beaconId;
+    const deployments = getServiceData(
+      "Amberdata",
+      "0x13a49162b764b0035587d5aa260156533975905bc1b89df9d2b43bd185186306-get _market_spot_vwap_pairs_{pair}_latest",
+      network
+    );
+    beaconId = deployments.beacon.beaconId;
   }
 
   try {

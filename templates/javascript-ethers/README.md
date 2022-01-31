@@ -6,24 +6,25 @@ This project is composed of the following:
 
 1. A test that uses a mocked RrpBeaconServer to simulate reading a beacon value
    from a smart contract.
-1. A script to deploy the BeaconReaderExample contract to any network. This
+2. A script to deploy the BeaconReaderExample contract to any network. This
    script will set the address of the RrpBeaconServer contract deployed on the
    selected network and after the script finishes it will display the address of
    the contract deployed but also save this address to `deployments` directory
    on the root of this repo (except for hardhat network since this network is
    started and stop just for the duration of the script execution).
-1. A script to read the beacon value from the deployed contract. If selected
+3. A script to read the beacon value from the deployed contract. If selected
    network is not `hardhat` or `localhost` then this address must be then
    whitelisted by the RrpBeaconServer manager account prior to reading the
    beacon value.
 
 ## Instructions
 
-1. Clone this repo
-1. Run the following to install the dependencies
+Run the following to install the dependencies
 
 ```sh
 npm install
+# or
+yarn install
 ```
 
 Now depending on the network you are using you will need to do the following:
@@ -37,41 +38,53 @@ steps are needed to run both the test and the scripts.
 #### Test
 
 ```sh
-npx hardhat test test/BeaconReaderExample.test.js
+npm run test
+# or
+yarn test
 ```
 
 #### Script
 
 ```sh
-npx hardhat run scripts/deploy.js
-npx hardhat run scripts/read-beacon.js
+npm run deploy
+npm run read-beacon
+# or
+yarn deploy
+yarn read-beacon
 ```
 
 ### Localhost network
 
-You could also start a local ethreum node by running the following command on a
+You could also start a local ethereum node by running the following command on a
 separate terminal:
 
 ```sh
-npx hardhat node
+npm run eth-node
+# or
+yarn eth-node
 ```
 
 #### Test
 
 ```sh
-npx hardhat test test/BeaconReaderExample.test.js --network localhost
+npm run test --network localhost
+# or
+yarn test --network localhost
 ```
 
 #### Script
 
 ```sh
-npx hardhat run scripts/deploy.js --network localhost
-npx hardhat run scripts/read-beacon.js --network localhost
+npm run deploy --network localhost
+npm run read-beacon --network localhost
+# or
+yarn deploy --network localhost
+yarn read-beacon --network localhost
 ```
 
 ### Remote networks
 
-This will require that you set some parameters in an .env file. You could rename
+This will require that you set some parameters in an .env file. You could copy
 the [.env.example](./.env.example) file in the root of this repo and replace the
 placeholders with valid values.
 
@@ -84,14 +97,19 @@ also set the `MNEMONIC` of an account that needs to have enough funds.
 #### Test
 
 ```sh
-npx hardhat test test/BeaconReaderExample.test.js --network polygon-mumbai
+npm run test --network polygon-mumbai
+# or
+yarn test --network polygon-mumbai
 ```
 
 #### Script
 
 ```sh
-npx hardhat run scripts/deploy.js --network polygon-mumbai
-npx hardhat run scripts/read-beacon.js --network polygon-mumbai
+npm run deploy --network polygon-mumbai
+npm run read-beacon --network polygon-mumbai
+# or
+yarn deploy --network polygon-mumbai
+yarn read-beacon --network polygon-mumbai
 ```
 
 **WARNING:** Please note that whatever value you set for `NETWORK` in the .env
