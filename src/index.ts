@@ -31,7 +31,7 @@ function getServiceData(apiName: string, beaconName: string, chain: string): Ser
 
   const goBeaconData = goSync(() => require(`@api3dao/operations/data/apis/${apiName}/beacons/${beaconName}`));
   if (!isGoSuccess(goBeaconData)) throw new Error(`Service data does not exist.`);
-  const beaconData = JSON.parse(goBeaconData.data).toString();
+  const beaconData = goBeaconData.data;
 
   return {
     contracts: {
@@ -45,4 +45,5 @@ function getServiceData(apiName: string, beaconName: string, chain: string): Ser
   };
 }
 
+// TODO: Rethink how the functions are exported
 export default { getServiceData };
