@@ -1,7 +1,7 @@
 import services from '.';
 
 describe('getServiceData', () => {
-  it('works', () => {
+  it('returns Amberdata service data', () => {
     expect(
       services.getServiceData(
         'Amberdata',
