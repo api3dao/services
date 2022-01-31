@@ -1,6 +1,6 @@
 import { ChildProcessWithoutNullStreams, execSync, spawn } from 'child_process';
-import { chmodSync, readFileSync, writeFileSync } from 'fs';
-import { join, relative } from 'path';
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 import chalk from 'chalk';
 import { createTmpDir } from './utils';
 import { getAvailableTemplates } from '../src/cli/cli';
@@ -39,7 +39,7 @@ describe('Beacon reader CLI', () => {
   beforeAll(() => {
     // By default the built CLI script is not executable and we would need to invoke it using node directly which has a
     // disadvantage that we are not testing that the shebang works properly.
-    chmodSync(CLI_EXECUTABLE, '755');
+    execSync(`chmod +x ${CLI_EXECUTABLE}`);
   });
 
   it('shows help', () => {
