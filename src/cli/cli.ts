@@ -24,14 +24,11 @@ const TEMPLATE_DIR = join(__dirname, '../../templates');
 export const getAvailableTemplates = () => readdirSync(TEMPLATE_DIR);
 export const getTemplatePath = (template: string) => join(TEMPLATE_DIR, template);
 
-// TODO: test
 export const createProjectUsingTemplate = (path: string, template: string) => {
   console.info(`Creating a new beacon reader app in ${chalk.green(path)}`);
 
   mkdirSync(path, { recursive: true });
   copySync(getTemplatePath(template), path);
-
-  // TODO: install dependencies
 
   console.info(`Successfully created and initialized a new project.`);
 };
@@ -39,8 +36,10 @@ export const createProjectUsingTemplate = (path: string, template: string) => {
 export const createCli = () =>
   yargs(hideBin(process.argv))
     .command(
-      // The name of the cli binary is "create-beacon-reader-app" and it should generate the without the need to specify a
-      // command. See: https://github.com/yargs/yargs/blob/main/docs/advanced.md#default-commands
+      // The name of the cli binary is "create-beacon-reader-app" (see package.json) and it should generate the app
+      // without the need for additional command. This is inspired by how "create-react-app" works.
+      //
+      // See: https://github.com/yargs/yargs/blob/main/docs/advanced.md#default-commands
       '$0',
       'Create a project skeleton for an application that reads a value from beacon',
       {
@@ -57,10 +56,11 @@ export const createCli = () =>
           type: 'string',
         },
       },
-      // TODO: Test interactivity
       async (args) => {
-        // We validate the template first, because we want to show the output of "--help" command before we prompt the
-        // user for questions. We do this because the mixed output of "--help" and prompts doesn't look good.
+        // We validate the template before we prompt the user for questions because we want to show the output of
+        // "--help" command in case it is invalid. We do not want to show the "--help" after we ask for the parameters
+        // interactively. We do this because the mixed output of "--help" and text from prompted questions doesn't look
+        // good.
         const templates = getAvailableTemplates();
         if (args.template && !templates.includes(args.template)) throw new Error(`Unknown template: ${args.template}`);
 
@@ -84,9 +84,10 @@ export const createCli = () =>
         );
 
         // An error here means the user cancelled the prompt question (e.g. ctrl+c).
+        // TODO: This will make the script return 0 status code which is not nice
         if (!isGoSuccess(goResult)) return;
         // We need to spread the parameters from "yargs" since if a user defined "path" as argument it will not be part
-        // of the result from question prompt.
+        // of the result from question prompt (because we only ask for missing parameters).
         const { path, template } = { ...args, ...goResult.data } as Record<string, string>;
 
         createProjectUsingTemplate(path, template);

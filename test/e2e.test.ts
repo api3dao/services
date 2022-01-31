@@ -36,6 +36,8 @@ const execCommand = (command: string, ...args: CommandArg[]) => {
 
 describe('Beacon reader CLI', () => {
   beforeAll(() => {
+    // By default the built CLI script is not executable and we would need to invoke it using node directly which has a
+    // disadvantage that we are not testing that the shebang works properly.
     chmodSync(CLI_EXECUTABLE, '755');
   });
 
@@ -90,7 +92,7 @@ describe('Beacon reader CLI', () => {
     expect(lines[1]).toContain(`Successfully created and initialized a new project.`);
   });
 
-  describe('templates are functional', () => {
+  describe('templates are valid and working', () => {
     getAvailableTemplates().forEach((templateName) => {
       it(`tests ${templateName}`, () => {
         const tmpDir = createTmpDir();

@@ -6,7 +6,7 @@ import { createTmpDir } from '../../test/utils';
 const listFilesRecursively = (path: string) =>
   klawSync(path)
     .map((file) => file.path)
-    .map((p) => p.split(path)[1]);
+    .map((p) => p.split(path)[1]); // We only care about the filename
 
 it('tests createProjectUsingTemplate', () => {
   const tmpDir = createTmpDir();
