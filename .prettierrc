@@ -12,6 +12,23 @@
         "parser": "markdown",
         "proseWrap": "always"
       }
+    },
+    {
+      "files": "templates/**/*.*",
+      "options": {
+        "printWidth": 80,
+        "singleQuote": false
+      }
+    },
+    {
+      "files": "templates/**/*.sol",
+      "options": {
+        "compiler": "0.8.9",
+        "tabWidth": 4,
+        "useTabs": false,
+        "bracketSpacing": false,
+        "explicitTypes": "always"
+      }
     }
   ]
 }

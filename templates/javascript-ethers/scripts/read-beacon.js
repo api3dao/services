@@ -1,5 +1,5 @@
-const hre = require("hardhat");
 const fs = require("fs");
+const hre = require("hardhat");
 
 async function main() {
   const network = hre.network.name;
