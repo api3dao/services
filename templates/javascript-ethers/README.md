@@ -113,9 +113,10 @@ yarn read-beacon --network polygon-mumbai
 ```
 
 **WARNING:** Please note that whatever value you set for `NETWORK` in the .env
-file must match a file name within the `./services/data/beacons/0.3.1/`
-directory. This is because the script will try to find the address of an already
-deployed RrpBeaconServer contract on the selected network. Also before actually
-being able to read the beacon value please remember that you must contact the
-manager of the deployed RrpBeaconServer contract and ask for the
-BeaconReaderExample contract to be whitelisted.
+file must match a file name within the `@api3/services` repository. This is
+because the script will try to find the address of an already deployed
+RrpBeaconServer contract on the selected network.
+
+Also before actually being able to read the beacon value please remember that
+you must contact the manager of the deployed RrpBeaconServer contract and ask
+for the BeaconReaderExample contract to be whitelisted.
