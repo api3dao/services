@@ -17,7 +17,7 @@
     "create-beacon-reader-app": "./dist/cli/index.js"
   },
   "scripts": {
-    "build": "yarn run clean && yarn run tsc",
+    "build": "yarn run clean && yarn run tsc:build",
     "clean": "rimraf -rf ./dist *.tgz",
     "cli": "ts-node src/cli/index.ts",
     "lint:eslint": "eslint . --ext .js,.ts",
@@ -25,7 +25,8 @@
     "prettier:check": "prettier --check \"./**/*.{js,ts,md,json}\" --loglevel silent",
     "prettier:write": "prettier --write \"./**/*.{js,ts,md,json}\"",
     "test": "jest",
-    "tsc": "tsc --project tsconfig.json"
+    "tsc": "tsc --project tsconfig.json",
+    "tsc:build": "tsc --project tsconfig-build.json"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",
