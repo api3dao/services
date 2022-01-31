@@ -1,9 +1,7 @@
-import { mkdtempSync } from 'fs';
-import { tmpdir } from 'os';
-import { join } from 'path';
 import klawSync from 'klaw-sync';
 import chalk from 'chalk';
 import { createProjectUsingTemplate, getAvailableTemplates, getTemplatePath } from './cli';
+import { createTmpDir } from '../../test/utils';
 
 const listFilesRecursively = (path: string) =>
   klawSync(path)
@@ -11,7 +9,7 @@ const listFilesRecursively = (path: string) =>
     .map((p) => p.split(path)[1]);
 
 it('tests createProjectUsingTemplate', () => {
-  const tmpDir = mkdtempSync(join(tmpdir(), 'beacon-reader-test'));
+  const tmpDir = createTmpDir();
   const template = 'javascript-ethers';
   jest.spyOn(global.console, 'info');
 

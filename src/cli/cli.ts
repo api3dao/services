@@ -57,7 +57,6 @@ export const createCli = () =>
           type: 'string',
         },
       },
-      // TODO: Test  --help command
       // TODO: Test interactivity
       async (args) => {
         // We validate the template first, because we want to show the output of "--help" command before we prompt the
@@ -86,13 +85,14 @@ export const createCli = () =>
 
         // An error here means the user cancelled the prompt question (e.g. ctrl+c).
         if (!isGoSuccess(goResult)) return;
-        const { path, template } = goResult.data as Record<string, string>;
+        // We need to spread the parameters from "yargs" since if a user defined "path" as argument it will not be part
+        // of the result from question prompt.
+        const { path, template } = { ...args, ...goResult.data } as Record<string, string>;
 
         createProjectUsingTemplate(path, template);
       }
     )
     .command('show-available-templates', 'Show the list of available template options', {}, () => {
-      // TODO: Test this prints out correct info
       console.info(getAvailableTemplates().join('\n'));
     })
     .example([
