@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Beacon reader CLI shows help 1`] = `
+"index.js
+
+Create a project skeleton for an application that reads a value from beacon
+
+Commands:
+  index.js                           Create a project skeleton for an application that reads a value from beacon
+                                                                                                               [default]
+  index.js show-available-templates  Show the list of available template options
+
+Options:
+      --version   Show version number                                                                          [boolean]
+      --help      Show help                                                                                    [boolean]
+  -p, --path      Path to a directory in which to create a project. The directory will be created if it doesn't exist
+                  yet.                                                                                          [string]
+  -t, --template  The name of the template to be used. Use the \\"show-available-templates\\" command to list the available
+                  options.                                                                                      [string]
+
+Examples:
+  index.js                                                 Run the interactive version of the CLI
+  index.js --path=\\".\\"                                      Create the project in the current directory
+  index.js --path=\\"my-app\\" --template=\\"javascript-ethers\\"  Create the project inside the \\"my-app\\" directory"
+`;

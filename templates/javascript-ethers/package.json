@@ -1,0 +1,26 @@
+{
+  "name": "javascript-ethers-beacon-starter",
+  "version": "1.0.0",
+  "description": "A starter project for reading beacon values from a smart contract",
+  "license": "MIT",
+  "scripts": {
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js",
+    "read-beacon": "hardhat run scripts/read-beacon.js",
+    "eth-node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.3",
+    "hardhat": "^2.8.2"
+  },
+  "dependencies": {
+    "@api3/airnode-abi": "^0.3.1",
+    "@api3/airnode-protocol": "^0.3.1",
+    "@api3/services": "api3dao/services#4cb79ffc406c4451c84accf42f99e6a1251a5799",
+    "dotenv": "^11.0.0"
+  }
+}

@@ -14,3 +14,7 @@ node_modules
 # Log files
 *.log
 *.receipt.json
+
+# Ignore "yarn.lock" and "package-lock.json" as these files will be installed depending on the users npm/yarn version
+/templates/**/yarn.lock
+/templates/**/package-lock.json
