@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@api3dao/operations@api3dao/operations#384840c4c0fa49698a06c15c3225f30993e9e2ff":
+"@api3dao/operations@api3dao/operations":
   version "1.0.0"
-  resolved "https://codeload.github.com/api3dao/operations/tar.gz/384840c4c0fa49698a06c15c3225f30993e9e2ff"
+  resolved "https://codeload.github.com/api3dao/operations/tar.gz/88a6e6490e5de63ef0e34d99d8733393aa8bc5f7"
   dependencies:
     ethers "^5.5.2"
 

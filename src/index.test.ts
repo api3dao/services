@@ -2,20 +2,14 @@ import { getServiceData } from '.';
 
 describe('getServiceData', () => {
   it('returns Amberdata service data', () => {
-    expect(
-      getServiceData(
-        'Amberdata',
-        '0x13a49162b764b0035587d5aa260156533975905bc1b89df9d2b43bd185186306-get _market_spot_vwap_pairs_{pair}_latest',
-        'ropsten'
-      )
-    ).toEqual({
+    expect(getServiceData('Amberdata', 'global vwap for eth_usd', 'ropsten')).toEqual({
       beacon: {
-        beaconId: '0x77898871469bda1f390433935691dea2022f7a7e76fc6cb8d4466a20fe659004',
+        beaconId: '0x52775c1d7c61e5de2a64e58006f4ee1e0f7913dab0dd5d3e10f128c74167f4fe',
         parameters: [
           {
             name: 'pair',
             type: 'bytes32',
-            value: 'eth_usdc',
+            value: 'eth_usd',
           },
           {
             name: '_path',
@@ -32,8 +26,13 @@ describe('getServiceData', () => {
             type: 'bytes32',
             value: '1000000,',
           },
+          {
+            name: 'lookbackPeriod',
+            type: 'bytes32',
+            value: '5',
+          },
         ],
-        templateId: '0x13a49162b764b0035587d5aa260156533975905bc1b89df9d2b43bd185186306',
+        templateId: '0xd218d6d5f630faa290676bebe58c88f68a9dccbfece4a3028cf4a5539f397459',
       },
       contracts: {
         RrpBeaconServer: '0x2cFda716b751eb406C5124C6E4428F2AEA453D96',
