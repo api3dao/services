@@ -55,6 +55,7 @@ async function main() {
   }
 
   try {
+    // TODO: More user friendly value format
     console.log(
       "Beacon value: ",
       await beaconReaderExample.readBeacon(beaconId)

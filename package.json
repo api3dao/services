@@ -56,7 +56,9 @@
   },
   "dependencies": {
     "@api3dao/operations": "api3dao/operations",
+    "@api3dao/utility-contracts": "api3dao/utility-contracts",
     "chalk": "^4.1.2",
+    "ethers": "^5.5.4",
     "fs-extra": "^10.0.0",
     "prompts": "^2.4.2",
     "yargs": "^17.3.1"

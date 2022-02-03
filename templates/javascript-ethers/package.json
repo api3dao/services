@@ -4,10 +4,11 @@
   "description": "A starter project for reading beacon values from a smart contract",
   "license": "MIT",
   "scripts": {
-    "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js",
+    "eth-node": "hardhat node",
     "read-beacon": "hardhat run scripts/read-beacon.js",
-    "eth-node": "hardhat node"
+    "test": "hardhat test",
+    "whitelist-reader": "hardhat run scripts/whitelist-reader.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
@@ -20,7 +21,7 @@
   "dependencies": {
     "@api3/airnode-abi": "^0.3.1",
     "@api3/airnode-protocol": "^0.3.1",
-    "@api3/services": "api3dao/services#4cb79ffc406c4451c84accf42f99e6a1251a5799",
+    "@api3/services": "api3dao/services",
     "dotenv": "^11.0.0"
   }
 }

@@ -9,6 +9,7 @@ const network = NETWORK
       [NETWORK]: {
         ...(PROVIDER_URL && { url: PROVIDER_URL }),
         ...(MNEMONIC && {
+          // TODO: Should this be "accounts" (plural)?
           accounts: {
             mnemonic: MNEMONIC,
           },
