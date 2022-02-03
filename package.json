@@ -25,6 +25,7 @@
     "prettier:check": "prettier --check \"./**/*.{js,ts,md,json,sol}\"",
     "prettier:write": "prettier --write \"./**/*.{js,ts,md,json,sol}\"",
     "test": "jest",
+    "test:update-snapshot": "jest --updateSnapshot",
     "tsc": "tsc --project tsconfig.json",
     "tsc:build": "tsc --project tsconfig-build.json"
   },

@@ -44,12 +44,14 @@ export const createCli = () =>
       'Create a project skeleton for an application that reads a value from beacon',
       {
         path: {
+          alias: 'p',
           description:
             "Path to a directory in which to create a project. The directory will be created if it doesn't exist yet.",
           demandOption: false,
           type: 'string',
         },
         template: {
+          alias: 't',
           description:
             'The name of the template to be used. Use the "show-available-templates" command to list the available options.',
           demandOption: false,

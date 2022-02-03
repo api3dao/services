@@ -11,12 +11,12 @@ Commands:
   index.js show-available-templates  Show the list of available template options
 
 Options:
-  --version   Show version number                                                                              [boolean]
-  --help      Show help                                                                                        [boolean]
-  --path      Path to a directory in which to create a project. The directory will be created if it doesn't exist yet.
-                                                                                                                [string]
-  --template  The name of the template to be used. Use the \\"show-available-templates\\" command to list the available
-              options.                                                                                          [string]
+      --version   Show version number                                                                          [boolean]
+      --help      Show help                                                                                    [boolean]
+  -p, --path      Path to a directory in which to create a project. The directory will be created if it doesn't exist
+                  yet.                                                                                          [string]
+  -t, --template  The name of the template to be used. Use the \\"show-available-templates\\" command to list the available
+                  options.                                                                                      [string]
 
 Examples:
   index.js                                                 Run the interactive version of the CLI

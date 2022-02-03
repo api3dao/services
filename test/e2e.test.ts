@@ -96,6 +96,17 @@ describe('Beacon reader CLI', () => {
     expect(lines[1]).toContain(`Successfully created and initialized a new project.`);
   });
 
+  it('accepts shorthands for parameters', () => {
+    const tmpDir = createTmpDir();
+    const template = 'javascript-ethers';
+
+    const output = execCommand('', ['-p', tmpDir], ['-t', template]);
+
+    const lines = output.split('\n');
+    expect(lines[0]).toContain(`Creating a new beacon reader app in ${chalk.green(tmpDir)}`);
+    expect(lines[1]).toContain(`Successfully created and initialized a new project.`);
+  });
+
   describe('templates are valid and working', () => {
     getAvailableTemplates().forEach((templateName) => {
       it(`tests ${templateName}`, () => {
