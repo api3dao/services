@@ -133,11 +133,11 @@ describe('Beacon reader CLI', () => {
         expect(testOutput).toContain('1 passing');
 
         // 6. Deploy the beacon reader (and mocked beacon server)
-        const deployOutput = execSync(`FORCE_COLOR=0 yarn deploy`).toString();
+        const deployOutput = execSync(`FORCE_COLOR=0 yarn deploy --network localhost`).toString();
         expect(deployOutput).toContain('BeaconReaderExample deployed to:');
 
         // 7. Read a value from the mocked beacon server
-        const readBeaconOutput = execSync(`yarn read-beacon`).toString();
+        const readBeaconOutput = execSync(`yarn read-beacon --network localhost`).toString();
         expect(readBeaconOutput).toContain('Beacon value:');
 
         // 8. TODO: Read a value from a beacon that is already deployed. (use services repo for this)
