@@ -8,10 +8,10 @@ async function main() {
   // Read BeaconReaderExample contract address from deployments files
   let beaconReaderExampleAddress = null;
   try {
-    // TODO: Simplify
-    ({ beaconReaderExampleAddress } = JSON.parse(
+    const parseResult = JSON.parse(
       fs.readFileSync(`./deployments/${network}.json`).toString()
-    ));
+    );
+    beaconReaderExampleAddress = parseResult.beaconReaderExampleAddress;
     if (!beaconReaderExampleAddress) throw new Error("beaconId not found");
   } catch (e) {
     console.log(`Error: ${e}. Please try first running deploy script`);

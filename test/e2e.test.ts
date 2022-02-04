@@ -139,9 +139,8 @@ describe('Beacon reader CLI', () => {
         // 7. Read a value from the mocked beacon server
         const readBeaconOutput = execSync(`yarn read-beacon --network localhost`).toString();
         expect(readBeaconOutput).toContain('Beacon value:');
-
-        // 8. TODO: Read a value from a beacon that is already deployed. (use services repo for this)
       });
     });
+    // TODO: Read a value from a beacon that is already deployed.
   });
 });
