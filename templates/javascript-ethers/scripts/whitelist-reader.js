@@ -34,13 +34,13 @@ async function main() {
 
   // This is the account specified in the ".env" file. Hardhat reads that
   // file when reading the configuration in "hardhat.config.js"
-  const { mnemonic, path } = hre.network.config.accounts;
+  const { mnemonic } = hre.network.config.accounts;
   const result = await whitelistBeaconReader(
     beaconId,
     beaconReaderExampleAddress,
     network.toLowerCase(),
     hre.network.config.url,
-    { mnemonic: mnemonic, derivationPath: path }
+    { mnemonic: mnemonic }
   );
 
   if (result.indefiniteWhitelistStatus) {
