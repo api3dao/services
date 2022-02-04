@@ -48,15 +48,8 @@ async function main() {
     rrpBeaconServerAddress
   );
   await beaconReaderExample.deployed();
-
-  // This solves the bug in Mumbai network where the contract address is not the real one.
-  // TODO: Do we need? See: https://github.com/nomiclabs/hardhat/issues/2162#issuecomment-1011824602
-  const txHash = beaconReaderExample.deployTransaction.hash;
-  console.log(`Tx hash: ${txHash}\nWaiting for transaction to be mined...`);
-  const txReceipt = await ethers.provider.waitForTransaction(txHash);
-
   // Output the contract address to the console
-  console.log("BeaconReaderExample deployed to:", txReceipt.contractAddress);
+  console.log("BeaconReaderExample deployed to:", beaconReaderExample.address);
 
   // Save the contract address to a file
   const destinationDir = "./deployments";
