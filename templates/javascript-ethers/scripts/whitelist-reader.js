@@ -3,7 +3,6 @@ const hre = require("hardhat");
 const { getServiceData, whitelistBeaconReader } = require("@api3/services");
 
 async function main() {
-  // TODO: call .toLowerCase() here
   const network = hre.network.name;
 
   if (network.toLowerCase() === "localhost") {
