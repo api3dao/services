@@ -46,20 +46,14 @@ export function getServiceData(apiName: string, beaconName: string, chain: strin
   };
 }
 
-interface PrivateKeySender {
-  privateKey: string;
-}
-
 interface MnemonicSender {
   mnemonic: string;
   derivationPath?: string;
 }
 
-type SenderAccount = PrivateKeySender | MnemonicSender;
-
-export function isPrivateKeySender(senderAccount: SenderAccount): senderAccount is PrivateKeySender {
-  return Object.prototype.hasOwnProperty.call(senderAccount, 'privateKey');
-}
+// Keeping SenderAccount type like this so we can add "PrivateKeySender" (as union with MnemonicSender) if necessary in
+// the future.
+type SenderAccount = MnemonicSender;
 
 interface WhitelistBeaconReaderResult {
   beaconId: string;
@@ -82,13 +76,9 @@ export async function whitelistBeaconReader(
   const beaconWhitelister = goBeaconWhitelister.data;
 
   const provider = new ethers.providers.JsonRpcProvider(providerUrl);
-  const wallet = isPrivateKeySender(senderAccount)
-    ? new ethers.Wallet(senderAccount.privateKey)
-    : ethers.Wallet.fromMnemonic(senderAccount.mnemonic, senderAccount.derivationPath);
+  const wallet = ethers.Wallet.fromMnemonic(senderAccount.mnemonic, senderAccount.derivationPath);
   const connectedWallet = wallet.connect(provider);
-  const whitelisterContract = new ethers.Contract(beaconWhitelister.address, beaconWhitelister.abi).connect(
-    connectedWallet
-  );
+  const whitelisterContract = new ethers.Contract(beaconWhitelister.address, beaconWhitelister.abi, connectedWallet);
 
   await whitelisterContract.whitelistReader(beaconId, beaconReaderAddress);
   const filter = whitelisterContract.filters.WhitelistedReader(beaconId, beaconReaderAddress);

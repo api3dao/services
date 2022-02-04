@@ -30,9 +30,9 @@ async function main() {
     "global vwap for eth_usd",
     network
   );
-  beaconId = deployments.beacon.beaconId;
+  const beaconId = deployments.beacon.beaconId;
 
-  const account = hre.network.config.account;
+  const [account] = await ethers.getSigners();
   const result = await whitelistBeaconReader(
     beaconId,
     beaconReaderExampleAddress,
