@@ -5,12 +5,15 @@ const { getServiceData, whitelistBeaconReader } = require("@api3/services");
 async function main() {
   const network = hre.network.name;
 
-  // TODO: Update the mocked contract so that whitelisting is necessary
   if (
     network.toLowerCase() === "hardhat" ||
     network.toLowerCase() === "localhost"
-  )
+  ) {
+    console.log(
+      'Whitelisting is not necessary when using the mocked "RrpBeaconServerMock" contract.'
+    );
     return;
+  }
 
   // Read BeaconReaderExample contract address deployed using deploy.js
   let beaconReaderExampleAddress = null;
