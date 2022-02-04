@@ -2,7 +2,9 @@
 
 > A starter project for reading beacon values from a smart contract
 
-This project is composed of the following:
+This project was created by the `create-beacon-reader-app` CLI from the
+[services repo](https://github.com/api3dao/services). This project is composed
+of the following:
 
 1. A test that uses a mocked `RrpBeaconServer` contract to simulate reading a
    beacon value from a smart contract.
