@@ -62,6 +62,7 @@ interface WhitelistBeaconReaderResult {
   indefiniteWhitelistStatus: boolean;
 }
 
+// TODO: Unit test
 export async function whitelistBeaconReader(
   beaconId: string,
   beaconReaderAddress: string,
