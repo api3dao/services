@@ -1,9 +1,10 @@
 require("@nomiclabs/hardhat-waffle");
 
 require("dotenv").config();
-
 const { NETWORK, PROVIDER_URL, MNEMONIC } = process.env;
 
+// For remote networks, you have to configure hardhat with the accounts
+// and provider that should be used to connect to the target chain.
 const network = NETWORK
   ? {
       [NETWORK]: {
@@ -29,7 +30,6 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
-
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */

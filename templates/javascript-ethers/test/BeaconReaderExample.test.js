@@ -19,6 +19,7 @@ describe("BeaconReaderExample", function () {
     );
     await beaconReaderExample.deployed();
 
+    // TODO: Do we need this hack?
     // This solves the bug in polygon-mumbai network where the contract address is not the real one
     const txHash = beaconReaderExample.deployTransaction.hash;
     console.log(`Tx hash: ${txHash}\nWaiting for transaction to be mined...`);

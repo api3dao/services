@@ -1,11 +1,12 @@
+# Project dependencies
 node_modules
-.env
-coverage
-coverage.json
-typechain
 
-#Hardhat files
+# User secrets
+.env
+
+# Hardhat files
 cache
 artifacts
 
+# Deployments directory is created when the contracts are deployed
 deployments

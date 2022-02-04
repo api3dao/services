@@ -5,33 +5,17 @@ const { getServiceData } = require("@api3/services");
 async function main() {
   const network = hre.network.name;
 
-  // Read BeaconReaderExample contract address deployed using deploy.js
+  // Read BeaconReaderExample contract address from deployments files
   let beaconReaderExampleAddress = null;
-  if (network.toLowerCase() === "hardhat") {
-    // In case of hardhat network we must re-deploy the contracts
-    const RrpBeaconServerMock = await ethers.getContractFactory(
-      "RrpBeaconServerMock"
-    );
-    const rrpBeaconServerMock = await RrpBeaconServerMock.deploy();
-    await rrpBeaconServerMock.deployed();
-    const BeaconReaderExample = await ethers.getContractFactory(
-      "BeaconReaderExample"
-    );
-    const beaconReaderExample = await BeaconReaderExample.deploy(
-      rrpBeaconServerMock.address
-    );
-    await beaconReaderExample.deployed();
-    beaconReaderExampleAddress = beaconReaderExample.address;
-  } else {
-    try {
-      ({ beaconReaderExampleAddress } = JSON.parse(
-        fs.readFileSync(`./deployments/${network}.json`).toString()
-      ));
-      if (!beaconReaderExampleAddress) throw new Error("beaconId not found");
-    } catch (e) {
-      console.log(`Error: ${e}. Please try first running deploy script`);
-      return;
-    }
+  try {
+    // TODO: Simplify
+    ({ beaconReaderExampleAddress } = JSON.parse(
+      fs.readFileSync(`./deployments/${network}.json`).toString()
+    ));
+    if (!beaconReaderExampleAddress) throw new Error("beaconId not found");
+  } catch (e) {
+    console.log(`Error: ${e}. Please try first running deploy script`);
+    return;
   }
 
   const beaconReaderExample = await hre.ethers.getContractAt(
@@ -39,10 +23,7 @@ async function main() {
     beaconReaderExampleAddress
   );
 
-  if (
-    network.toLowerCase() === "hardhat" ||
-    network.toLowerCase() === "localhost"
-  ) {
+  if (network.toLowerCase() === "localhost") {
     // Uses RrpBeaconServerMock contract so any value would work
     beaconId = ethers.utils.hexlify(ethers.utils.randomBytes(32));
   } else {
