@@ -4,18 +4,18 @@
 
 This project is composed of the following:
 
-1. A test that uses a mocked RrpBeaconServer to simulate reading a beacon value
-   from a smart contract.
+1. A test that uses a mocked `RrpBeaconServer` contract to simulate reading a
+   beacon value from a smart contract.
 2. A script to deploy the BeaconReaderExample contract to any network. This
-   script will set the address of the RrpBeaconServer contract deployed on the
+   script will set the address of the `RrpBeaconServer` contract deployed on the
    selected network and after the script finishes it will display the address of
    the contract deployed but also save this address to `deployments` directory
-   on the root of this repo (except for hardhat network since this network is
-   started and stop just for the duration of the script execution).
-3. A script to read the beacon value from the deployed contract. If selected
-   network is not `hardhat` or `localhost` then this address must be then
-   whitelisted by the RrpBeaconServer manager account prior to reading the
-   beacon value.
+   in the root of this repo.
+3. A script to whitelist the beacon reader in order to be able to read the
+   beacon value from the target beacon. If the selected network is `localhost`
+   then using running this script is not necessary since the `RrpBeaconServer`
+   is mocked and returns mocked value independently of the whitelist status.
+4. A script to read the beacon value from the deployed contract.
 
 ## Instructions
 
@@ -27,36 +27,13 @@ npm install
 yarn install
 ```
 
-Now depending on the network you are using you will need to do the following:
-
-### Default network
-
-The simplest way to test this project is by using the integrated
-[Hardhat network](https://hardhat.org/hardhat-network/), in which case no extra
-steps are needed to run both the test and the scripts.
-
-#### Test
-
-```sh
-npm run test
-# or
-yarn test
-```
-
-#### Script
-
-```sh
-npm run deploy
-npm run read-beacon
-# or
-yarn deploy
-yarn read-beacon
-```
+The beacon reader app can be run on multiple networks. Read the section below
+for more details.
 
 ### Localhost network
 
-You could also start a local ethereum node by running the following command on a
-separate terminal:
+First, you need to start a local ethereum node by running the following command
+on a separate terminal:
 
 ```sh
 npm run eth-node
@@ -66,6 +43,8 @@ yarn eth-node
 
 #### Test
 
+The test command will run the tests defined in the `test` directory.
+
 ```sh
 npm run test --network localhost
 # or
@@ -73,6 +52,15 @@ yarn test --network localhost
 ```
 
 #### Script
+
+Use these scripts to deploy smart contracts to the target chain and to read the
+beacon value. Since you are using the localhost network and mocked
+`RrpBeaconServer`, there is no need whitelist the reader before running the
+`read-beacon` script.
+
+You also do not need to edit the `.env` file, since hardhat will connect to the
+local chain automatically (using the default configuration). It will also
+provide funded accounts to run the scripts below.
 
 ```sh
 npm run deploy --network localhost
@@ -84,7 +72,7 @@ yarn read-beacon --network localhost
 
 ### Remote networks
 
-This will require that you set some parameters in an .env file. You could copy
+This will require that you set some parameters in an `.env` file. You could copy
 the [.env.example](./.env.example) file in the root of this repo and replace the
 placeholders with valid values.
 
@@ -96,6 +84,8 @@ also set the `MNEMONIC` of an account that needs to have enough funds.
 
 #### Test
 
+The test command will run the tests defined in the `test` directory.
+
 ```sh
 npm run test --network polygon-mumbai
 # or
@@ -104,19 +94,21 @@ yarn test --network polygon-mumbai
 
 #### Script
 
+Use these scripts to deploy smart contracts to the target chain and to read the
+beacon value. Since you are using a remote network you also need to whitelist
+the beacon reader before attempting to call `read-beacon` script.
+
+**WARNING:** Please note that whatever value you set for `NETWORK` in the `.env`
+file must match a file name within the `@api3/services` repository. This is
+because the script does not deploy the mocked `RrpBeaconServer`, but instead
+connects to an existing `RrpBeaconServer` provided by API3.
+
 ```sh
 npm run deploy --network polygon-mumbai
+npm run whitelist-reader --network polygon-mumbai
 npm run read-beacon --network polygon-mumbai
 # or
 yarn deploy --network polygon-mumbai
+yarn whitelist-reader --network polygon-mumbai
 yarn read-beacon --network polygon-mumbai
 ```
-
-**WARNING:** Please note that whatever value you set for `NETWORK` in the .env
-file must match a file name within the `@api3/services` repository. This is
-because the script will try to find the address of an already deployed
-RrpBeaconServer contract on the selected network.
-
-Also before actually being able to read the beacon value please remember that
-you must contact the manager of the deployed RrpBeaconServer contract and ask
-for the BeaconReaderExample contract to be whitelisted.

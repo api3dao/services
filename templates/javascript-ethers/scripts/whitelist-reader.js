@@ -3,12 +3,10 @@ const hre = require("hardhat");
 const { getServiceData, whitelistBeaconReader } = require("@api3/services");
 
 async function main() {
+  // TODO: call .toLowerCase() here
   const network = hre.network.name;
 
-  if (
-    network.toLowerCase() === "hardhat" ||
-    network.toLowerCase() === "localhost"
-  ) {
+  if (network.toLowerCase() === "localhost") {
     console.log(
       'Whitelisting is not necessary when using the mocked "RrpBeaconServerMock" contract.'
     );
@@ -36,7 +34,7 @@ async function main() {
   const beaconId = deployments.beacon.beaconId;
 
   // This is the account specified in the ".env" file. Hardhat reads that
-  // file as part of "hardhat.config.js"
+  // file when reading the configuration in "hardhat.config.js"
   const [account] = await ethers.getSigners();
   const result = await whitelistBeaconReader(
     beaconId,
