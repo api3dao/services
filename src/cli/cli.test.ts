@@ -10,7 +10,7 @@ const listFilesRecursively = (path: string) =>
 
 it('tests createProjectUsingTemplate', () => {
   const tmpDir = createTmpDir();
-  const template = 'javascript-ethers';
+  const template = 'javascript-ethers-hardhat';
   jest.spyOn(global.console, 'info');
 
   createProjectUsingTemplate(tmpDir, template);
@@ -24,7 +24,7 @@ it('tests createProjectUsingTemplate', () => {
 });
 
 it('tests getAvailableTemplates', () => {
-  expect(getAvailableTemplates()).toEqual(['javascript-ethers']);
+  expect(getAvailableTemplates()).toEqual(['javascript-ethers-hardhat']);
 });
 
 it('tests getTemplatePath', () => {

@@ -19,7 +19,8 @@ Options:
                   options.                                                                                      [string]
 
 Examples:
-  index.js                                                 Run the interactive version of the CLI
-  index.js --path=\\".\\"                                      Create the project in the current directory
-  index.js --path=\\"my-app\\" --template=\\"javascript-ethers\\"  Create the project inside the \\"my-app\\" directory"
+  index.js                                                      Run the interactive version of the CLI
+  index.js --path=\\".\\"                                           Create the project in the current directory
+  index.js --path=\\"my-app\\"                                      Create the project inside the \\"my-app\\" directory
+  --template=\\"javascript-ethers-hardhat\\""
 `;

@@ -49,7 +49,7 @@ describe('Beacon reader CLI', () => {
 
   it('shows available commands', () => {
     const output = execCommand('show-available-templates');
-    expect(output).toEqual(['javascript-ethers'].join('\n'));
+    expect(output).toEqual(['javascript-ethers-hardhat'].join('\n'));
   });
 
   describe('interactive command', () => {
@@ -87,7 +87,7 @@ describe('Beacon reader CLI', () => {
 
   it('parses command arguments', () => {
     const tmpDir = createTmpDir();
-    const template = 'javascript-ethers';
+    const template = 'javascript-ethers-hardhat';
 
     const output = execCommand('', ['--path', tmpDir], ['--template', template]);
 
@@ -98,7 +98,7 @@ describe('Beacon reader CLI', () => {
 
   it('accepts shorthands for parameters', () => {
     const tmpDir = createTmpDir();
-    const template = 'javascript-ethers';
+    const template = 'javascript-ethers-hardhat';
 
     const output = execCommand('', ['-p', tmpDir], ['-t', template]);
 

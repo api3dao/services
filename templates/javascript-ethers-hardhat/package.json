@@ -1,5 +1,5 @@
 {
-  "name": "javascript-ethers-beacon-starter",
+  "name": "javascript-ethers-hardhat-beacon-starter",
   "version": "1.0.0",
   "description": "A starter project for reading beacon values from a smart contract",
   "license": "MIT",
