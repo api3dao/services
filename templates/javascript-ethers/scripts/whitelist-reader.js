@@ -15,10 +15,10 @@ async function main() {
   // Read BeaconReaderExample contract address deployed using deploy.js
   let beaconReaderExampleAddress = null;
   try {
-    // TODO: Simplify
-    ({ beaconReaderExampleAddress } = JSON.parse(
+    const parseResult = JSON.parse(
       fs.readFileSync(`./deployments/${network}.json`).toString()
-    ));
+    );
+    beaconReaderExampleAddress = parseResult.beaconReaderExampleAddress;
     if (!beaconReaderExampleAddress) throw new Error("beaconId not found");
   } catch (e) {
     console.log(`Error: ${e}. Please try first running deploy script`);
@@ -32,6 +32,8 @@ async function main() {
   );
   const beaconId = deployments.beacon.beaconId;
 
+  // This is the account specified in the ".env" file. Hardhat reads that
+  // file as part of "hardhat.config.js"
   const [account] = await ethers.getSigners();
   const result = await whitelistBeaconReader(
     beaconId,
@@ -44,11 +46,10 @@ async function main() {
   if (result.indefiniteWhitelistStatus) {
     console.log(`Beacon reader whitelisted indefinitely`);
   } else {
-    console.log(
-      `Beacon reader whitelisted until ${new Date(
-        result.expirationTimestamp
-      ).toLocaleString()}`
-    );
+    const userFriendlyDate = new Date(
+      result.expirationTimestamp * 1000
+    ).toLocaleString();
+    console.log(`Beacon reader whitelisted until ${userFriendlyDate}`);
   }
 }
 
