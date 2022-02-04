@@ -81,16 +81,26 @@ export async function whitelistBeaconReader(
   const whitelisterContract = new ethers.Contract(beaconWhitelister.address, beaconWhitelister.abi, connectedWallet);
 
   await whitelisterContract.whitelistReader(beaconId, beaconReaderAddress);
+
+  const eventData = await waitForWhitelistedReaderEvent(whitelisterContract, beaconId, beaconReaderAddress, provider);
+  return {
+    beaconId: eventData.beaconId,
+    beaconReaderAddress: eventData.reader,
+    expirationTimestamp: eventData.expirationTimestamp.toNumber() * 1000,
+    indefiniteWhitelistStatus: eventData.indefiniteWhitelistStatus,
+  };
+}
+
+async function waitForWhitelistedReaderEvent(
+  whitelisterContract: ethers.Contract,
+  beaconId: string,
+  beaconReaderAddress: string,
+  provider: ethers.providers.JsonRpcProvider
+) {
   const filter = whitelisterContract.filters.WhitelistedReader(beaconId, beaconReaderAddress);
-  // TODO: Simplify
-  const { args } = await new Promise((resolve) => provider.once(filter, resolve)).then((rawLog) =>
+  const result = await new Promise((resolve) => provider.once(filter, resolve)).then((rawLog) =>
     whitelisterContract.interface.parseLog(rawLog as ethers.Event)
   );
 
-  return {
-    beaconId: args.beaconId,
-    beaconReaderAddress: args.reader,
-    expirationTimestamp: args.expirationTimestamp.toNumber() * 1000,
-    indefiniteWhitelistStatus: args.indefiniteWhitelistStatus,
-  };
+  return result.args;
 }
