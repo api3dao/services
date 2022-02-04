@@ -55,13 +55,23 @@ async function main() {
   }
 
   try {
-    // TODO: More user friendly value format
-    console.log(
-      "Beacon value: ",
-      await beaconReaderExample.readBeacon(beaconId)
-    );
+    // Read the beacon and print out the raw response returned by ethers
+    const response = await beaconReaderExample.readBeacon(beaconId);
+    console.log("Raw beacon response:");
+    console.log(response);
+    console.log();
+
+    // The ethers response is combined array and object with BigInteger
+    // values. There are two values returned:
+    //  1. value - the actual value of the beacon
+    //  2. timestamp - unix timestamp, specifying when was the beacon
+    //     value updated
+    const value = response.value.toString();
+    const timestamp = response.timestamp.toNumber();
+    const userFriendlyDate = new Date(timestamp * 1000).toLocaleString();
+    console.log(`Beacon value: ${value}, timestamp: ${userFriendlyDate}.`);
   } catch (e) {
-    console.error(e.error || e);
+    console.error(e);
   }
 }
 
