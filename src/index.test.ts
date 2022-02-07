@@ -2,7 +2,7 @@ import { getServiceData } from '.';
 
 describe('getServiceData', () => {
   it('returns Amberdata service data', () => {
-    expect(getServiceData('Amberdata', 'global vwap for eth_usd', 'ropsten')).toEqual({
+    expect(getServiceData('Amberdata', 'eth_usd', 'ropsten')).toEqual({
       beacon: {
         beaconId: '0x52775c1d7c61e5de2a64e58006f4ee1e0f7913dab0dd5d3e10f128c74167f4fe',
         parameters: [
