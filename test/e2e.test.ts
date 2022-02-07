@@ -121,7 +121,10 @@ describe('Beacon reader CLI', () => {
         // 3. Use "file:" dependency option for the services
         const packageJsonPath = join(tmpDir, 'package.json');
         const packageJson = readFileSync(packageJsonPath).toString();
-        writeFileSync(packageJsonPath, packageJson.replace('api3dao/services', join(__dirname, '../')));
+        writeFileSync(
+          packageJsonPath,
+          packageJson.replace('"@api3/services": "^0.1.0"', `"@api3/services": "file:${join(__dirname, '../')}"`)
+        );
 
         // 4. Install the dependencies for the created project
         // Redirect the stderr of yarn install to /dev/null to avoid the output appearing in jest output

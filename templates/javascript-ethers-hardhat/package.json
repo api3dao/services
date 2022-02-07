@@ -21,7 +21,7 @@
   "dependencies": {
     "@api3/airnode-abi": "^0.3.1",
     "@api3/airnode-protocol": "^0.3.1",
-    "@api3/services": "api3dao/services",
+    "@api3/services": "^0.1.0",
     "dotenv": "^11.0.0"
   }
 }
