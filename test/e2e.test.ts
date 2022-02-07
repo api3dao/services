@@ -1,4 +1,4 @@
-import { ChildProcessWithoutNullStreams, execSync, spawn } from 'child_process';
+import { execSync } from 'child_process';
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import chalk from 'chalk';
@@ -50,39 +50,6 @@ describe('Beacon reader CLI', () => {
   it('shows available commands', () => {
     const output = execCommand('show-available-templates');
     expect(output).toEqual(['javascript-ethers-hardhat'].join('\n'));
-  });
-
-  describe('interactive command', () => {
-    const waitOnOutput = (childProcess: ChildProcessWithoutNullStreams) =>
-      new Promise<string>((resolve) =>
-        childProcess.stdout.once('readable', () => {
-          const data = childProcess.stdout.read().toString();
-          resolve(data);
-        })
-      );
-
-    it('works', async () => {
-      // Run the command in a child process so we can pipe stdin to it
-      const childProcess = spawn(CLI_EXECUTABLE);
-
-      // Write the path to the script
-      const tmpDir = createTmpDir();
-      childProcess.stdin.write(tmpDir + '\n');
-      await waitOnOutput(childProcess);
-
-      // Wait a few milliseconds so that the prompt asks for template
-      await new Promise((res) => setTimeout(res, 500));
-
-      // Choose the template to create (accept the default one)
-      childProcess.stdin.write('\n');
-      // Wait a few seconds until the script initializes the project
-      await new Promise((res) => setTimeout(res, 5000));
-      const output = await waitOnOutput(childProcess);
-
-      expect(childProcess.kill()).toBe(true);
-      expect(output).toContain(`Creating a new beacon reader app in ${chalk.green(tmpDir)}`);
-      expect(output).toContain(`Successfully created and initialized a new project.`);
-    }, 10_000);
   });
 
   it('parses command arguments', () => {
