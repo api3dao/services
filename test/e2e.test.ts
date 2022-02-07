@@ -123,7 +123,7 @@ describe('Beacon reader CLI', () => {
         const packageJson = readFileSync(packageJsonPath).toString();
         writeFileSync(
           packageJsonPath,
-          packageJson.replace('"@api3/services": "^0.1.0"', `"@api3/services": "file:${join(__dirname, '../')}"`)
+          packageJson.replace('"@api3/services": "^0.1.1"', `"@api3/services": "file:${join(__dirname, '../')}"`)
         );
 
         // 4. Install the dependencies for the created project
