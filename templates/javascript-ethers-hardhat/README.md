@@ -97,8 +97,9 @@ yarn test --network polygon-mumbai
 #### Script
 
 Use these scripts to deploy smart contracts to the target chain and to read the
-beacon value. Since you are using a remote network you also need to whitelist
-the beacon reader before attempting to call `read-beacon` script.
+beacon value for the `eth_usd` endpoint. Since you are using a remote network
+you also need to whitelist the beacon reader before attempting to call
+`read-beacon` script.
 
 **WARNING:** Please note that whatever value you set for `NETWORK` in the `.env`
 file must match a file name within the `@api3/services` repository. This is
