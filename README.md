@@ -46,13 +46,20 @@ Look at `package.json` for details and more scripts.
 
 ### Publishing the package on npm
 
-Simply run:
+1. Ensure you are on a `main` branch
+2. Simply run:
 
 ```
-yarn publish
+# See: https://github.com/lerna/lerna/issues/1821#issuecomment-448473941
+yarn publish --access public
 ```
 
-and choose the version that should be published. This will create a tagged commit which you should push on github.
+3. Choose a version to be published and press enter to confirm
+4. The script will publish the package on npm and create a commit and git tag which you should push on github:
+
+```
+git push --follow-tags
+```
 
 ### Using the CLI from source
 
