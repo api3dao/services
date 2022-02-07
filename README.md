@@ -44,6 +44,16 @@ yarn test
 
 Look at `package.json` for details and more scripts.
 
+### Publishing the package on npm
+
+Simply run:
+
+```
+yarn publish
+```
+
+and choose the version that should be published. This will create a tagged commit which you should push on github.
+
 ### Using the CLI from source
 
 To run the CLI, make sure you have installed all of the dependencies and run:
