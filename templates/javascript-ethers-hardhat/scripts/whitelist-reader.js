@@ -25,11 +25,7 @@ async function main() {
     return;
   }
 
-  const deployments = getServiceData(
-    "Amberdata",
-    "global vwap for eth_usd",
-    network
-  );
+  const deployments = getServiceData("Amberdata", "eth_usd", network);
   const beaconId = deployments.beacon.beaconId;
 
   // This is the account specified in the ".env" file. Hardhat reads that

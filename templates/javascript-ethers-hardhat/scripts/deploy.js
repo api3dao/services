@@ -32,11 +32,7 @@ async function main() {
     await rrpBeaconServerMock.deployed();
     rrpBeaconServerAddress = rrpBeaconServerMock.address;
   } else {
-    const deployments = getServiceData(
-      "Amberdata",
-      "global vwap for eth_usd",
-      network
-    );
+    const deployments = getServiceData("Amberdata", "eth_usd", network);
     rrpBeaconServerAddress = deployments.contracts.RrpBeaconServer;
   }
 

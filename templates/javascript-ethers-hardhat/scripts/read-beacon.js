@@ -27,11 +27,7 @@ async function main() {
     // Uses RrpBeaconServerMock contract so any value would work
     beaconId = ethers.utils.hexlify(ethers.utils.randomBytes(32));
   } else {
-    const deployments = getServiceData(
-      "Amberdata",
-      "global vwap for eth_usd",
-      network
-    );
+    const deployments = getServiceData("Amberdata", "eth_usd", network);
     beaconId = deployments.beacon.beaconId;
   }
 
