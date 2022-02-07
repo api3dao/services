@@ -11,8 +11,8 @@
     prompts "^2.4.2"
 
 "@api3dao/utility-contracts@api3dao/utility-contracts":
-  version "0.0.0"
-  resolved "https://codeload.github.com/api3dao/utility-contracts/tar.gz/d2d174393a4b4abbadc4fb285904ea74fc8fc335"
+  version "1.0.0"
+  resolved "https://codeload.github.com/api3dao/utility-contracts/tar.gz/08b69d49a3068c4f5a2113284928fd0c052ae43d"
 
 "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.7":
   version "7.16.7"
