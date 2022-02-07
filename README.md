@@ -20,7 +20,7 @@ This package consists of two parts, both related to beacons:
 To install dependencies, run:
 
 ```
-yarn
+yarn install
 ```
 
 To build the project, run:
