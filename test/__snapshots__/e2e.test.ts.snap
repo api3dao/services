@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Beacon reader CLI shows help 1`] = `
-"index.js
+"create-beacon-reader-app.js
 
 Create a project skeleton for an application that reads a value from beacon
 
 Commands:
-  index.js                           Create a project skeleton for an application that reads a value from beacon
-                                                                                                               [default]
-  index.js show-available-templates  Show the list of available template options
+  create-beacon-reader-app.js                           Create a project skeleton for an application that reads a value
+                                                        from beacon                                            [default]
+  create-beacon-reader-app.js show-available-templates  Show the list of available template options
 
 Options:
       --version   Show version number                                                                          [boolean]
@@ -19,8 +19,8 @@ Options:
                   options.                                                                                      [string]
 
 Examples:
-  index.js                                                      Run the interactive version of the CLI
-  index.js --path=\\".\\"                                           Create the project in the current directory
-  index.js --path=\\"my-app\\"                                      Create the project inside the \\"my-app\\" directory
+  create-beacon-reader-app.js                                   Run the interactive version of the CLI
+  create-beacon-reader-app.js --path=\\".\\"                        Create the project in the current directory
+  create-beacon-reader-app.js --path=\\"my-app\\"                   Create the project inside the \\"my-app\\" directory
   --template=\\"javascript-ethers-hardhat\\""
 `;

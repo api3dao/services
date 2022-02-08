@@ -8,18 +8,19 @@
     "url": "git+https://github.com/api3dao/services.git"
   },
   "private": false,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "bin": {
-    "create-beacon-reader-app": "./dist/cli/index.js"
+    "create-beacon-reader-app": "./dist/bin/create-beacon-reader-app.js"
   },
   "scripts": {
-    "build": "yarn run clean && yarn run tsc:build",
+    "build": "yarn run clean && yarn run tsc:build && yarn copy-files",
     "clean": "rimraf -rf ./dist *.tgz",
-    "cli": "ts-node src/cli/index.ts",
+    "cli": "ts-node bin/create-beacon-reader-app.ts",
+    "copy-files": "cp -r templates dist",
     "eth-node": "hardhat node",
     "lint:eslint": "eslint . --ext .js,.ts",
     "lint": "yarn run prettier:check && yarn run lint:eslint",

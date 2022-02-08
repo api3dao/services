@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import { createTmpDir } from './utils';
 import { getAvailableTemplates } from '../src/cli/cli';
 
-const CLI_EXECUTABLE = `${__dirname}/../dist/cli/index.js`;
+const CLI_EXECUTABLE = `${__dirname}/../dist/bin/create-beacon-reader-app.js`;
 // Turning this flag to 'true' will print each command before executing it
 // It might be useful to turn on, while debugging particular test.
 const DEBUG_COMMANDS = false;
@@ -80,6 +80,7 @@ describe('Beacon reader CLI', () => {
         const tmpDir = createTmpDir();
 
         // 1. Create a repository based on the current template name
+        if (DEBUG_COMMANDS) console.info(`Beacon project location: ${tmpDir}`);
         execCommand('', ['--path', tmpDir], ['--template', templateName]);
 
         // 2. Change the current working directory to the newly created project folder
