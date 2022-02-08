@@ -47,17 +47,17 @@ Look at `package.json` for details and more scripts.
 
 ### Publishing the package on npm
 
-1. Ensure you are on a `main` branch
-2. Run `yarn` to make sure you have the fresh dependencies
-3. Simply run:
+1. `git checkout main` - to ensure you are on a `main` branch
+2. `yarn install` - to install fresh dependencies
+3. Run:
 
 ```
 # See: https://github.com/lerna/lerna/issues/1821#issuecomment-448473941
 yarn publish --access public
 ```
 
-3. Choose a version to be published and press enter to confirm
-4. The script will publish the package on npm and create a commit and git tag which you should push on github:
+4. Choose a version to be published and press enter to confirm
+5. The script will publish the package on npm and create a commit and git tag which you should push on github:
 
 ```
 git push --follow-tags
