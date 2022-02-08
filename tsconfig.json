@@ -13,6 +13,6 @@
     "baseUrl": "./",
     "outDir": "./dist"
   },
-  "include": ["src", "test"],
+  "include": ["bin", "src", "test"],
   "exclude": ["node_modules"]
 }
