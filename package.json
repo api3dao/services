@@ -24,7 +24,7 @@
     "eth-node": "hardhat node",
     "lint:eslint": "eslint . --ext .js,.ts",
     "lint": "yarn run prettier:check && yarn run lint:eslint",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn && yarn build",
     "prettier:check": "prettier --check \"./**/*.{js,ts,md,json,sol}\"",
     "prettier:write": "prettier --write \"./**/*.{js,ts,md,json,sol}\"",
     "test": "jest",
