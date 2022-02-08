@@ -5,7 +5,8 @@
 
 ## User documentation
 
-The user facing documentation will be added to [API3 docs](https://docs.api3.org/) shorty.
+The user facing documentation can be found in
+[API3 docs](https://docs.api3.org/beacon/v0.1/functions/#creating-a-starter-project).
 
 ## Developer documentation
 
@@ -47,7 +48,8 @@ Look at `package.json` for details and more scripts.
 ### Publishing the package on npm
 
 1. Ensure you are on a `main` branch
-2. Simply run:
+2. Run `yarn` to make sure you have the fresh dependencies
+3. Simply run:
 
 ```
 # See: https://github.com/lerna/lerna/issues/1821#issuecomment-448473941
