@@ -1,7 +1,7 @@
 {
   "name": "@api3/services",
   "license": "MIT",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/api3dao/services#readme",
   "repository": {
     "type": "git",
@@ -11,6 +11,7 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
+    "contracts",
     "dist"
   ],
   "bin": {
@@ -59,6 +60,7 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
+    "@api3/airnode-protocol": "0.3.1",
     "@api3dao/operations": "api3dao/operations",
     "@api3dao/utility-contracts": "api3dao/utility-contracts",
     "chalk": "^4.1.2",
