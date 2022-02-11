@@ -87,7 +87,7 @@ export async function whitelistBeaconReader(
   return {
     beaconId: eventData.beaconId,
     beaconReaderAddress: eventData.reader,
-    expirationTimestamp: eventData.expirationTimestamp.toNumber() * 1000,
+    expirationTimestamp: eventData.expirationTimestamp.toNumber(),
     indefiniteWhitelistStatus: eventData.indefiniteWhitelistStatus,
   };
 }
