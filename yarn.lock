@@ -2,13 +2,18 @@
 # yarn lockfile v1
 
 
+"@api3/airnode-protocol@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@api3/airnode-protocol/-/airnode-protocol-0.3.1.tgz#a2aa0ef61c757b56edfd8b72fc2da3716f5e7708"
+  integrity sha512-Q6YC8x5zIZk2EVhRGiuaFov8ndVhh+O/lASCcXzTr6YGuEfSRCx0SQWi8USr3JjR3Qy2TihKz22BYnPjbB26kg==
+  dependencies:
+    ethers "^5.4.4"
+
 "@api3dao/operations@api3dao/operations":
   version "1.0.0"
   resolved "https://codeload.github.com/api3dao/operations/tar.gz/29e04eb50ca94162fec255732b18fec4ba28551e"
   dependencies:
-    "@types/prompts" "^2.0.14"
     ethers "^5.5.2"
-    prompts "^2.4.2"
 
 "@api3dao/utility-contracts@api3dao/utility-contracts":
   version "1.0.0"
@@ -2629,7 +2634,7 @@ ethereumjs-util@^7.1.1, ethereumjs-util@^7.1.3, ethereumjs-util@^7.1.4:
     ethereum-cryptography "^0.1.3"
     rlp "^2.2.4"
 
-ethers@^5.5.2, ethers@^5.5.4:
+ethers@^5.4.4, ethers@^5.5.2, ethers@^5.5.4:
   version "5.5.4"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.5.4.tgz#e1155b73376a2f5da448e4a33351b57a885f4352"
   integrity sha512-N9IAXsF8iKhgHIC6pquzRgPBJEzc9auw3JoRkaKe+y4Wl/LFBtDDunNe7YmdomontECAcC5APaAgWZBiu1kirw==
