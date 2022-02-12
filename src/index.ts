@@ -1,6 +1,6 @@
 import _chainsDeploymentInfo from '@api3dao/operations/data/chains.json';
 import { ethers } from 'ethers';
-import { goSync, isGoSuccess } from './utils';
+import { goSync, isGoSuccess, sanitiseFilename } from './utils';
 
 interface ChainInfo {
   AirnodeRrp: string;
@@ -30,7 +30,9 @@ export function getServiceData(apiName: string, beaconName: string, chain: strin
     throw new Error(`Deployment file for ${chain} not found`);
   }
 
-  const goBeaconData = goSync(() => require(`@api3dao/operations/data/apis/${apiName}/beacons/${beaconName}`));
+  const goBeaconData = goSync(() =>
+    require(`@api3dao/operations/data/apis/${apiName}/beacons/${sanitiseFilename(beaconName)}.json`)
+  );
   if (!isGoSuccess(goBeaconData)) throw new Error(`Service data does not exist.`);
   const beaconData = goBeaconData.data;
 
