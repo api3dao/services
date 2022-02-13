@@ -21,11 +21,13 @@
       }
     },
     {
-      "files": "templates/**/*.sol",
+      "files": ["templates/**/*.sol", "contracts/*.sol"],
       "options": {
         "compiler": "0.8.9",
+        "printWidth": 80,
         "tabWidth": 4,
         "useTabs": false,
+        "singleQuote": false,
         "bracketSpacing": false,
         "explicitTypes": "always"
       }
