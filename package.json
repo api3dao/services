@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@api3/airnode-protocol": "0.3.1",
-    "@api3dao/operations": "api3dao/operations",
+    "@api3dao/operations": "api3dao/operations#v0.1",
     "@api3dao/utility-contracts": "api3dao/utility-contracts",
     "chalk": "^4.1.2",
     "ethers": "^5.5.4",
