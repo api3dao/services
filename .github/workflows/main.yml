@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-          cache: 'yarn'
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Lint
@@ -43,12 +42,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-          cache: 'yarn'
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Build
         run: yarn build
-      - name: Run hardhat node on backround
+      - name: Run hardhat node in the background
         run: yarn eth-node &
       - name: Test
         run: yarn test
