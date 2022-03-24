@@ -33,8 +33,14 @@ export function getServiceData(apiName: string, beaconName: string, chain: strin
   const goBeaconData = goSync(() =>
     require(`@api3dao/operations/data/apis/${apiName}/beacons/${sanitiseFilename(beaconName)}.json`)
   );
-  if (!isGoSuccess(goBeaconData)) throw new Error(`Service data does not exist.`);
+  if (!isGoSuccess(goBeaconData)) throw new Error(`Beacon service data does not exist.`);
   const beaconData = goBeaconData.data;
+
+  const goTemplateData = goSync(() =>
+    require(`@api3dao/operations/data/apis/${apiName}/templates/${sanitiseFilename(beaconName)}.json`)
+  );
+  if (!isGoSuccess(goTemplateData)) throw new Error(`Template service data does not exist.`);
+  const templateData = goTemplateData.data;
 
   return {
     contracts: {
@@ -43,7 +49,7 @@ export function getServiceData(apiName: string, beaconName: string, chain: strin
     beacon: {
       beaconId: beaconData['beaconId'],
       templateId: beaconData['templateId'],
-      parameters: beaconData['decodedParameters'],
+      parameters: templateData['decodedParameters'],
     },
   };
 }
