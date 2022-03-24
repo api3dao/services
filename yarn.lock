@@ -16,9 +16,9 @@
   dependencies:
     ethers "^5.4.4"
 
-"@api3dao/operations@api3dao/operations":
+"@api3dao/operations@api3dao/operations#v0.1":
   version "1.0.0"
-  resolved "https://codeload.github.com/api3dao/operations/tar.gz/29e04eb50ca94162fec255732b18fec4ba28551e"
+  resolved "https://codeload.github.com/api3dao/operations/tar.gz/83a119d9ba14a84e8d4d9f31a5e3f0e976ef11c8"
   dependencies:
     "@types/prompts" "^2.0.14"
     ethers "^5.5.2"
